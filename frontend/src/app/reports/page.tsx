@@ -93,7 +93,7 @@ const ReportsPage = () => {
 
     const csvContent = [
       headers.join(','),
-      ...data.map(row => row.map(v => `"${v}"`).join(','))
+      ...data.map(row => row.map((v: any) => `"${v}"`).join(','))
     ].join('\n');
     
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });

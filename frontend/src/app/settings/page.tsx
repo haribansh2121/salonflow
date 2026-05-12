@@ -27,7 +27,20 @@ const SettingsPage = () => {
   const [branches, setBranches] = useState<any[]>([]);
   const [showBranchModal, setShowBranchModal] = useState(false);
   const [editingBranch, setEditingBranch] = useState<any>(null);
-  const [branchFormData, setBranchFormData] = useState({ name: '', address: '', gstNumber: '', phone: '', email: '' });
+  const [branchFormData, setBranchFormData] = useState({ 
+    name: '', 
+    address: '', 
+    gstNumber: '', 
+    phone: '', 
+    email: '',
+    openingTime: '09:00',
+    closingTime: '21:00',
+    whatsappApiKey: '',
+    smsApiKey: '',
+    stripePublishableKey: '',
+    stripeSecretKey: '',
+    enableAutomation: true
+  });
 
   useEffect(() => {
     fetchData();
@@ -137,7 +150,20 @@ const SettingsPage = () => {
       }
       setShowBranchModal(false);
       setEditingBranch(null);
-      setBranchFormData({ name: '', address: '', gstNumber: '', phone: '', email: '' });
+      setBranchFormData({ 
+        name: '', 
+        address: '', 
+        gstNumber: '', 
+        phone: '', 
+        email: '',
+        openingTime: '09:00',
+        closingTime: '21:00',
+        whatsappApiKey: '',
+        smsApiKey: '',
+        stripePublishableKey: '',
+        stripeSecretKey: '',
+        enableAutomation: true
+      });
       fetchData();
     } catch (error) {
       alert('Failed to save branch');
@@ -403,7 +429,24 @@ const SettingsPage = () => {
                     <h3 className="text-lg font-bold text-slate-800">Branch Management</h3>
                   </div>
                   <button 
-                    onClick={() => { setEditingBranch(null); setBranchFormData({ name: '', address: '', gstNumber: '', phone: '', email: '' }); setShowBranchModal(true); }}
+                    onClick={() => { 
+                      setEditingBranch(null); 
+                      setBranchFormData({ 
+                        name: '', 
+                        address: '', 
+                        gstNumber: '', 
+                        phone: '', 
+                        email: '',
+                        openingTime: '09:00',
+                        closingTime: '21:00',
+                        whatsappApiKey: '',
+                        smsApiKey: '',
+                        stripePublishableKey: '',
+                        stripeSecretKey: '',
+                        enableAutomation: true
+                      }); 
+                      setShowBranchModal(true); 
+                    }}
                     className="flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-100 transition-all"
                   >
                     <Plus size={16} /> Add New Branch
@@ -454,7 +497,14 @@ const SettingsPage = () => {
                                   address: branch.address || '', 
                                   gstNumber: branch.gstNumber || '', 
                                   phone: branch.phone || '', 
-                                  email: branch.email || '' 
+                                  email: branch.email || '',
+                                  openingTime: branch.openingTime || '09:00',
+                                  closingTime: branch.closingTime || '21:00',
+                                  whatsappApiKey: branch.whatsappApiKey || '',
+                                  smsApiKey: branch.smsApiKey || '',
+                                  stripePublishableKey: branch.stripePublishableKey || '',
+                                  stripeSecretKey: branch.stripeSecretKey || '',
+                                  enableAutomation: branch.enableAutomation !== false
                                 }); 
                                 setShowBranchModal(true); 
                               }}

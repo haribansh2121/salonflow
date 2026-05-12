@@ -137,25 +137,29 @@ app.get('/api/analytics', authMiddleware, async (req, res) => {
   }
 });
 
+// ── Export for Vercel/Serverless ──
+module.exports = app;
+
 // ── Startup ──
-sequelize.authenticate()
-  .then(() => {
-    console.log('Database connected');
-    const isDev = process.env.NODE_ENV !== 'production';
-    // alter:true compares every column on every table — slow. Only run in dev.
-    return sequelize.sync({ alter: isDev });
-  })
-  .then(() => {
-    console.log('Database synced successfully');
-    automationService.init();
-    seedModules();
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server running on port ${PORT}`);
+if (require.main === module) {
+  sequelize.authenticate()
+    .then(() => {
+      console.log('Database connected');
+      const isDev = process.env.NODE_ENV !== 'production';
+      return sequelize.sync({ alter: isDev });
+    })
+    .then(() => {
+      console.log('Database synced successfully');
+      automationService.init();
+      seedModules();
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    })
+    .catch(err => {
+      console.error('Startup Error:', err.message);
+      if (err.message.includes('alter')) {
+        console.warn('HINT: If you changed ID types, please run the "Fresh Start" SQL script from MASTER_CONFIG.md to clear old constraints.');
+      }
     });
-  })
-  .catch(err => {
-    console.error('Startup Error:', err.message);
-    if (err.message.includes('alter')) {
-      console.warn('HINT: If you changed ID types, please run the "Fresh Start" SQL script from MASTER_CONFIG.md to clear old constraints.');
-    }
-  });
+}

@@ -197,7 +197,7 @@ const Dashboard = () => {
                       fontSize: '13px',
                       boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)'
                     }}
-                    formatter={(value: number) => [`₹${value.toLocaleString('en-IN')}`, 'Revenue']}
+                    formatter={(value: any) => [`₹${(value || 0).toLocaleString('en-IN')}`, 'Revenue']}
                     labelFormatter={(label) => new Date(label).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
                   />
                   <Area

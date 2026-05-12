@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { publicAPI } from '../lib/api';
+import { publicAPI } from '../../lib/api';
 import {
   Scissors, Calendar, Clock, User, Phone,
   Sparkles, CheckCircle, Loader2, ChevronRight, ArrowLeft
