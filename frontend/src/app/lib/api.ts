@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'https://your-app.vercel.app/api/auth/login';
+axios.post('/api/auth/login', data)
 
 const api = axios.create({
   baseURL: API_BASE,
