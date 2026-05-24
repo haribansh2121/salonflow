@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.post('/api/', data)
+const API_BASE = 'https://salonflow-six.vercel.app/';
 
 const api = axios.create({
   baseURL: API_BASE,
