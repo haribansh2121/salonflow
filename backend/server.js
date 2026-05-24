@@ -12,8 +12,8 @@ const app = express();
 // ── CORS (FIXED FOR PRODUCTION) ──
 app.use(cors({
   origin: [
-    'https://salonflow-six.vercel.app',
-    'http://localhost:3000'
+    'https://salonflow-ot0ybu54i-haribansh2121.vercel.app',
+      'https://salonflow-six.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
