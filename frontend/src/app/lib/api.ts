@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.post('/api/auth/login', data)
+axios.post('/api/', data)
 
 const api = axios.create({
   baseURL: API_BASE,
